@@ -1,4 +1,5 @@
 import { Schema, model } from "mongoose";
+import { UserRole } from "../../shared/constants/roles";
 
 const userSchema = new Schema(
     {
@@ -18,6 +19,12 @@ const userSchema = new Schema(
         passwordHash: {
             type: String,
             required: true,
+        },
+
+        role: {
+            type: String,
+            enum: Object.values(UserRole),
+            default: UserRole.MEMBER,
         },
 
         isActive: {
